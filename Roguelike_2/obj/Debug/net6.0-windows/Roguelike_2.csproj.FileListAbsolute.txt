@@ -35,3 +35,7 @@ C:\Users\georg\C#_Game\Roguelike_2\Roguelike_2\obj\Debug\net6.0-windows\refint\R
 C:\Users\georg\C#_Game\Roguelike_2\Roguelike_2\obj\Debug\net6.0-windows\Roguelike_2.pdb
 C:\Users\georg\C#_Game\Roguelike_2\Roguelike_2\obj\Debug\net6.0-windows\Roguelike_2.genruntimeconfig.cache
 C:\Users\georg\C#_Game\Roguelike_2\Roguelike_2\obj\Debug\net6.0-windows\ref\Roguelike_2.dll
+C:\Users\georg\C#_Game\Roguelike_2\Roguelike_2\bin\Debug\net6.0-windows\Content\bullet.xnb
+C:\Users\georg\C#_Game\Roguelike_2\Roguelike_2\bin\Debug\net6.0-windows\Content\cursor.xnb
+C:\Users\georg\C#_Game\Roguelike_2\Roguelike_2\bin\Debug\net6.0-windows\Content\hero.xnb
+C:\Users\georg\C#_Game\Roguelike_2\Roguelike_2\bin\Debug\net6.0-windows\Content\mob.xnb

@@ -1,15 +1,27 @@
-﻿using Microsoft.Xna.Framework;
+﻿#region using
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Content;
+#endregion
 
 namespace Roguelike_2
 {
-    public class Game1 : Game
+    public class Main : Game
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        private World _world;
 
-        public Game1()
+        public Main()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -18,7 +30,13 @@ namespace Roguelike_2
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            //Global.Bounds = new(1536, 1024);
+            //_graphics.PreferredBackBufferWidth = Global.Bounds.X;
+            //_graphics.PreferredBackBufferHeight = Global.Bounds.Y;
+            _graphics.ApplyChanges();
+
+            Global.Content = Content;
+            _world = new();
 
             base.Initialize();
         }
@@ -26,8 +44,8 @@ namespace Roguelike_2
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            Global.SpriteBatch = _spriteBatch;
 
-            // TODO: use this.Content to load your game content here
         }
 
         protected override void Update(GameTime gameTime)
@@ -35,7 +53,8 @@ namespace Roguelike_2
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            Global.Update(gameTime);
+            _world.Update();
 
             base.Update(gameTime);
         }
@@ -44,7 +63,9 @@ namespace Roguelike_2
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            _spriteBatch.Begin();
+            _world.Draw();
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }

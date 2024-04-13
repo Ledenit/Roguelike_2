@@ -1,0 +1,5 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/bullet.png","C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/bin/Windows/bullet.xnb","TextureProcessor","Texture2DContent",2275,725,1,0235659
+"C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/cursor.png","C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/bin/Windows/cursor.xnb","TextureProcessor","Texture2DContent",8222,202585,0,0511664
+"C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/hero.png","C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/bin/Windows/hero.xnb","TextureProcessor","Texture2DContent",6485,12117,0,036631
+"C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/mob.png","C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/bin/Windows/mob.xnb","TextureProcessor","Texture2DContent",164128,3768405,0,3528494
