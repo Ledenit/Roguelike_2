@@ -20,21 +20,27 @@ namespace Roguelike_2
         private readonly Player _player;
         public World()
         {
+            _player = new(Global.Content.Load<Texture2D>("hero"), new(Global.Bounds.X / 2, Global.Bounds.Y / 2), 0.25f, 0f);
             ProjectileController.Initialize();
-            _player = new(Global.Content.Load<Texture2D>("hero"), new(50, 50));
+            EnemyAI.Initialize("mob");
+            EnemyAI.AddEnemies();
+            EnemyAI.Initialize("hero");
+            EnemyAI.AddEnemies();
         }
 
         public void Update()
         {
             Input.Update();
             _player.Update();
-            ProjectileController.Update();
+            ProjectileController.Update(EnemyAI.Enemies);
+            EnemyAI.Update(_player);
         }
 
         public void Draw()
         {
             _player.Draw();
             ProjectileController.Draw();
+            EnemyAI.Draw();
         }
 
     }

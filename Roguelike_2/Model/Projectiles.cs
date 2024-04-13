@@ -30,6 +30,11 @@ namespace Roguelike_2
             LifeTime = info.LifeTime;
         }
 
+        public void Destroy()
+        {
+            LifeTime = 0;
+        }
+
         public void Update()
         {
             Position += Direction * Speed * Global.TotalSeconds;

@@ -30,9 +30,9 @@ namespace Roguelike_2
 
         protected override void Initialize()
         {
-            //Global.Bounds = new(1536, 1024);
-            //_graphics.PreferredBackBufferWidth = Global.Bounds.X;
-            //_graphics.PreferredBackBufferHeight = Global.Bounds.Y;
+            Global.Bounds = new(1200, 900);
+            _graphics.PreferredBackBufferWidth = Global.Bounds.X;
+            _graphics.PreferredBackBufferHeight = Global.Bounds.Y;
             _graphics.ApplyChanges();
 
             Global.Content = Content;

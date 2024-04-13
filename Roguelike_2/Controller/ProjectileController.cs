@@ -33,11 +33,22 @@ namespace Roguelike_2
             Projectiles.Add(new(_texture, info));
         }
 
-        public static void Update()
+        public static void Update(List<Enemy> enemies)
         {
             foreach(var p in Projectiles)
             {
                 p.Update();
+                foreach(var e in enemies)
+                {
+                    if (e.HP <= 0) continue;
+                    if ((p.Position - e.Position).Length() < 30)
+                    {
+                        e.TakeDamage(1);
+                        p.Destroy();
+                        break;
+                    }
+                }
+
             }
             Projectiles.RemoveAll((p) => p.LifeTime <= 0);
         }

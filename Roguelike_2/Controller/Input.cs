@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Content;
+using SharpDX.MediaFoundation.DirectX;
 #endregion
 
 namespace Roguelike_2
@@ -19,9 +20,16 @@ namespace Roguelike_2
     {
         private static MouseState _lastMouseState;
         private static Vector2 _direction;
+
         public static Vector2 Direction => _direction;
+
         public static Vector2 MousePosition => Mouse.GetState().Position.ToVector2();
+
         public static bool MouseClicked { get; private set; }
+
+        public static bool MouseRightClicked { get; private set; }
+
+        public static bool MouseLeftDown {  get; private set; }
 
         public static void Update()
         {
@@ -33,8 +41,10 @@ namespace Roguelike_2
             if (keyboardState.IsKeyDown(Keys.W)) _direction.Y--;
             if (keyboardState.IsKeyDown(Keys.S)) _direction.Y++;
 
-            MouseClicked = (Mouse.GetState().LeftButton == ButtonState.Pressed)
-                && (_lastMouseState.LeftButton == ButtonState.Released);
+            MouseLeftDown = Mouse.GetState().LeftButton == ButtonState.Pressed;
+            MouseClicked = MouseLeftDown && (_lastMouseState.LeftButton == ButtonState.Released);
+            MouseRightClicked = Mouse.GetState().RightButton == ButtonState.Pressed
+                && (_lastMouseState.RightButton == ButtonState.Released);
             _lastMouseState = Mouse.GetState();
         }
     }
