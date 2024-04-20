@@ -39,3 +39,4 @@ C:\Users\georg\C#_Game\Roguelike_2\Roguelike_2\bin\Debug\net6.0-windows\Content\
 C:\Users\georg\C#_Game\Roguelike_2\Roguelike_2\bin\Debug\net6.0-windows\Content\cursor.xnb
 C:\Users\georg\C#_Game\Roguelike_2\Roguelike_2\bin\Debug\net6.0-windows\Content\hero.xnb
 C:\Users\georg\C#_Game\Roguelike_2\Roguelike_2\bin\Debug\net6.0-windows\Content\mob.xnb
+C:\Users\georg\C#_Game\Roguelike_2\Roguelike_2\bin\Debug\net6.0-windows\Content\HP.xnb

@@ -26,13 +26,13 @@ namespace Roguelike_2
 
         public static Vector2 MousePosition => Mouse.GetState().Position.ToVector2();
 
-        public static bool MouseClicked { get; private set; }
+        public static bool MouseLeftClicked { get; private set; }
 
-        public static bool MouseRightClicked { get; private set; }
-
-        public static bool MouseLeftDown {  get; private set; }
+        public static bool MouseRightDown {  get; private set; }
 
         public static bool SpacePressed { get; private set; }
+
+        public static bool RPressed { get; private set; }
 
         public static void Update()
         {
@@ -45,12 +45,11 @@ namespace Roguelike_2
             if (keyboardState.IsKeyDown(Keys.W)) _direction.Y--;
             if (keyboardState.IsKeyDown(Keys.S)) _direction.Y++;
 
-            MouseLeftDown = Mouse.GetState().LeftButton == ButtonState.Pressed;
-            MouseClicked = MouseLeftDown && (_lastMouseState.LeftButton == ButtonState.Released);
-            MouseRightClicked = Mouse.GetState().RightButton == ButtonState.Pressed
-                && (_lastMouseState.RightButton == ButtonState.Released);
-
+            MouseLeftClicked = Mouse.GetState().LeftButton == ButtonState.Pressed && _lastMouseState.LeftButton == ButtonState.Released;
+            MouseRightDown = Mouse.GetState().RightButton == ButtonState.Pressed;
             SpacePressed = _lastKeyboardState.IsKeyUp(Keys.Space) && keyboardState.IsKeyDown(Keys.Space);
+            RPressed = _lastKeyboardState.IsKeyUp(Keys.R) && keyboardState.IsKeyDown(Keys.R);
+
             _lastMouseState = mouseState;
             _lastKeyboardState = keyboardState;
         }
