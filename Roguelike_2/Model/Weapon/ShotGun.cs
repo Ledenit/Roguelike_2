@@ -26,7 +26,8 @@ namespace Roguelike_2
                 Position = player.Position,
                 Rotation = player.Rotation - (3 * angle),
                 LifeTime = 0.5f,
-                Speed = 800
+                Speed = 800,
+                Damage = 2
             };
 
             for(int i=0; i < 5; i++)

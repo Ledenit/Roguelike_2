@@ -22,5 +22,6 @@ namespace Roguelike_2
         public float Rotation { get; set; }
         public float LifeTime { get; set; }
         public float Speed { get; set; }
+        public int Damage { get; set; }
     }
 }

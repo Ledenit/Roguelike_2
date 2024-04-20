@@ -22,12 +22,15 @@ namespace Roguelike_2
 
         public float LifeTime { get; set; }
 
+        public int Damage { get; set; }
+
         public Projectiles(Texture2D tex, ProjectilesInfo info) : base(tex, info.Position)
         {
             Speed = info.Speed;
             Rotation = info.Rotation;
             Direction = new((float)Math.Cos(Rotation), (float)Math.Sin(Rotation));
             LifeTime = info.LifeTime;
+            Damage = info.Damage;
         }
 
         public void Destroy()

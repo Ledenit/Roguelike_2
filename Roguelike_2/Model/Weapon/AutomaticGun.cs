@@ -24,7 +24,8 @@ namespace Roguelike_2
                 Position = player.Position,
                 Rotation = player.Rotation,
                 LifeTime = 2,
-                Speed = 600
+                Speed = 600,
+                Damage = 1
             };
 
             ProjectileController.AddProjectile(pd);

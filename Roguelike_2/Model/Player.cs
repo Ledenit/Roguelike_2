@@ -22,10 +22,23 @@ namespace Roguelike_2
         public Weapon Weapon { get; set; }
         private Weapon _shootGun = new ShotGun();
         private Weapon _AutomaticGun = new AutomaticGun();
+        public bool Dead { get; private set; }
+        public int HP { get; private set; }
 
         public Player(Texture2D texture, Vector2 position, float Cooldown, float CooldownLeft) : base(texture, position)
         {
             Weapon = _shootGun;
+            HP = 3;
+        }
+
+        public void Reset()
+        {
+            HP = 3;
+            _shootGun = new ShotGun();
+            _AutomaticGun = new AutomaticGun();
+            Dead = false;
+            Weapon = _shootGun;
+            Position = new(Global.Bounds.X / 2, Global.Bounds.Y / 2); ;
         }
 
         //Переработать под большее количество оружия
@@ -33,9 +46,23 @@ namespace Roguelike_2
         {
             Weapon = (Weapon==_shootGun) ? _AutomaticGun : _shootGun;
         }
-        
 
-        public void Update()
+        private void CheckDeath(List<Enemy> Enemies)
+        {
+            foreach (var e in Enemies)
+            {
+                if (e.HP <= 0) continue;
+                if ((Position - e.Position).Length() < 50)
+                {
+                    HP--;
+                    e.ResetHP();
+                }
+            }
+
+            if (HP == 0) Dead = true;
+        }
+
+        public void Update(List<Enemy> Enemies)
         {
             if(Input.Direction != Vector2.Zero)
             {
@@ -51,12 +78,16 @@ namespace Roguelike_2
             if (Input.SpacePressed)
                 Swap();
 
-            if (Input.MouseLeftDown)
+            if (Input.MouseRightDown)
                 Weapon.Fire(this);
 
-            if (Input.MouseRightClicked)
+            if (Input.MouseLeftClicked)
+                Weapon.Fire(this);
+
+            if (Input.RPressed)
                 Weapon.Reload();
-                
+
+            CheckDeath(Enemies);
         }
     }
 }

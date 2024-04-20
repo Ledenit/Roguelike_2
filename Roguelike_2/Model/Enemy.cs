@@ -22,12 +22,17 @@ namespace Roguelike_2
         public Enemy(Texture2D tex, Vector2 position) : base(tex, position)
         {
             Speed = 100;
-            HP = 1;
+            HP = 2;
         }
 
         public void TakeDamage(int damage)
         {
             HP -= damage;
+        }
+
+        public void ResetHP()
+        {
+            HP = 0;
         }
 
         public void Update(Player player)
