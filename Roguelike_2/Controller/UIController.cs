@@ -18,15 +18,17 @@ namespace Roguelike_2
     public static class UIController
     {
         private static Texture2D _bullet;
+        private static Texture2D _HP;
 
-        public static void Initialize(Texture2D texture)
+        public static void Initialize(Texture2D bullet, Texture2D hp)
         {
-            _bullet = texture;
+            _bullet = bullet;
+            _HP = hp;
         }
 
         public static void Draw(Player player)
         {
-            Color color = player.Weapon.Reloading ? Color.Red : Color.White;
+            Color colorBullet = player.Weapon.Reloading ? Color.Red : Color.White;
 
             for (int i=0; i< player.Weapon.Ammo; i++)
             {
@@ -34,15 +36,29 @@ namespace Roguelike_2
                 Global.SpriteBatch.Draw(
                     _bullet, 
                     position, 
-                    null, 
-                    color * 0.75f,
+                    null,
+                    colorBullet * 0.75f,
                     0,
                     Vector2.Zero, 
                     2,
                     SpriteEffects.None, 
                     1);
             }
-        }
 
+            for (int i = 0; i < player.HP; i++)
+            {
+                Vector2 position = new(Global.Bounds.X - _HP.Width*4, i * _HP.Height * 4);
+                Global.SpriteBatch.Draw(
+                    _HP,
+                    position,
+                    null,
+                    Color.White,
+                    0,
+                    Vector2.Zero,
+                    4,
+                    SpriteEffects.None,
+                    1);
+            }
+        }
     }
 }

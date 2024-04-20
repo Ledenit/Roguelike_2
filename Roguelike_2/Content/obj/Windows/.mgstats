@@ -1,5 +1,6 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/bullet.png","C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/bin/Windows/bullet.xnb","TextureProcessor","Texture2DContent",2275,725,0,508382
-"C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/cursor.png","C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/bin/Windows/cursor.xnb","TextureProcessor","Texture2DContent",8222,202585,0,0460375
-"C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/hero.png","C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/bin/Windows/hero.xnb","TextureProcessor","Texture2DContent",6485,12117,0,0161081
-"C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/mob.png","C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/bin/Windows/mob.xnb","TextureProcessor","Texture2DContent",6048,15285,0,1909194
+"C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/bullet.png","C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/bin/Windows/bullet.xnb","TextureProcessor","Texture2DContent",2275,725,0,3581928
+"C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/cursor.png","C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/bin/Windows/cursor.xnb","TextureProcessor","Texture2DContent",8222,202585,0,025512
+"C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/hero.png","C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/bin/Windows/hero.xnb","TextureProcessor","Texture2DContent",6485,12117,0,0065381
+"C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/HP.png","C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/bin/Windows/HP.xnb","TextureProcessor","Texture2DContent",341,485,0,013478
+"C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/mob.png","C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/bin/Windows/mob.xnb","TextureProcessor","Texture2DContent",6048,15285,0,0123833

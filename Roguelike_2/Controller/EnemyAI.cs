@@ -64,6 +64,12 @@ namespace Roguelike_2
                 Enemies.Add(new(enemy, RandomPosition()));
         }
 
+        public static void Reset()
+        {
+            Enemies.Clear();
+            _spawnTime = _spawnCooldown;
+        }
+
         public static void Update(Player player)
         {
             _spawnTime -= Global.TotalSeconds;
@@ -77,7 +83,7 @@ namespace Roguelike_2
             {
                 e.Update(player);
             }
-            Enemies.RemoveAll(z => z.HP <= 0);
+            Enemies.RemoveAll(e => e.HP <= 0);
         }
 
         public static void Draw()

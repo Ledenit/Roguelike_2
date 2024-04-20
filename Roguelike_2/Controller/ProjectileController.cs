@@ -28,6 +28,11 @@ namespace Roguelike_2
             _texture = texture;
         }
 
+        public static void Reset()
+        {
+            Projectiles.Clear();
+        }
+
         public static void AddProjectile(ProjectilesInfo info)
         {
             Projectiles.Add(new(_texture, info));
@@ -43,7 +48,7 @@ namespace Roguelike_2
                     if (e.HP <= 0) continue;
                     if ((p.Position - e.Position).Length() < 30)
                     {
-                        e.TakeDamage(1);
+                        e.TakeDamage(p.Damage);
                         p.Destroy();
                         break;
                     }
