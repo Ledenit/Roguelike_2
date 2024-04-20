@@ -24,14 +24,20 @@ namespace Roguelike_2
         private static float _spawnCooldown;
         private static float _spawnTime;
         private static Random _random;
+        private static Vector2 _playerPosition;
     
 
         public static void Initialize(string name)
         {
             _texture.Add(Global.Content.Load<Texture2D>(name));
-            _spawnCooldown = 1f;
+            _spawnCooldown = 1.5f;
             _spawnTime = _spawnCooldown;
             _random = new();
+        }
+
+        public static void Initialize(Vector2 playerPosition)
+        {
+            _playerPosition = playerPosition;
         }
 
         private static Vector2 RandomPosition()
@@ -42,6 +48,12 @@ namespace Roguelike_2
 
             position.X = (int)(_random.NextDouble() * height);
             position.Y = (int)(_random.NextDouble() * width);
+
+            if (Global.GetDistance(position, _playerPosition) < 50)
+            {
+                position.X -= 500;
+                position.Y -= 500;
+            }
 
             return position;
         }

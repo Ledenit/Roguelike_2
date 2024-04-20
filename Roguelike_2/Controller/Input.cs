@@ -20,6 +20,7 @@ namespace Roguelike_2
     {
         private static MouseState _lastMouseState;
         private static Vector2 _direction;
+        private static KeyboardState _lastKeyboardState;
 
         public static Vector2 Direction => _direction;
 
@@ -31,9 +32,12 @@ namespace Roguelike_2
 
         public static bool MouseLeftDown {  get; private set; }
 
+        public static bool SpacePressed { get; private set; }
+
         public static void Update()
         {
             var keyboardState = Keyboard.GetState();
+            var mouseState = Mouse.GetState();
 
             _direction = Vector2.Zero;
             if (keyboardState.IsKeyDown(Keys.A)) _direction.X--;
@@ -45,7 +49,10 @@ namespace Roguelike_2
             MouseClicked = MouseLeftDown && (_lastMouseState.LeftButton == ButtonState.Released);
             MouseRightClicked = Mouse.GetState().RightButton == ButtonState.Pressed
                 && (_lastMouseState.RightButton == ButtonState.Released);
-            _lastMouseState = Mouse.GetState();
+
+            SpacePressed = _lastKeyboardState.IsKeyUp(Keys.Space) && keyboardState.IsKeyDown(Keys.Space);
+            _lastMouseState = mouseState;
+            _lastKeyboardState = keyboardState;
         }
     }
 }

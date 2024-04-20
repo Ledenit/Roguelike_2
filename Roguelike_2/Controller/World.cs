@@ -21,7 +21,10 @@ namespace Roguelike_2
         public World()
         {
             _player = new(Global.Content.Load<Texture2D>("hero"), new(Global.Bounds.X / 2, Global.Bounds.Y / 2), 0.25f, 0f);
-            ProjectileController.Initialize();
+            var texture = Global.Content.Load<Texture2D>("bullet"); 
+            ProjectileController.Initialize(texture);
+            UIController.Initialize(texture);
+            EnemyAI.Initialize(_player.Position);
             EnemyAI.Initialize("mob");
             EnemyAI.AddEnemies();
             EnemyAI.Initialize("hero");
@@ -41,6 +44,7 @@ namespace Roguelike_2
             _player.Draw();
             ProjectileController.Draw();
             EnemyAI.Draw();
+            UIController.Draw(_player);
         }
 
     }

@@ -23,9 +23,9 @@ namespace Roguelike_2
 
         public static List<Projectiles> Projectiles { get; } = new();
 
-        public static void Initialize()
+        public static void Initialize(Texture2D texture)
         {
-            _texture = Global.Content.Load<Texture2D>("bullet");
+            _texture = texture;
         }
 
         public static void AddProjectile(ProjectilesInfo info)

@@ -28,5 +28,11 @@ namespace Roguelike_2
         {
             TotalSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
+
+        public static double GetDistance(Vector2 start, Vector2 end)
+        {
+            var distance = Math.Sqrt(Math.Pow(end.X - start.X,2) + Math.Pow(end.Y - start.Y, 2));
+            return distance;
+        }
     }
 }

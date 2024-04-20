@@ -19,61 +19,24 @@ namespace Roguelike_2
 {
     public class Player : Sprite2d
     {
-        private readonly float _cooldown;
-        private float _cooldownLeft;
-        private readonly int _maxAmmo;
-        public int Ammo { get; private set; }
-        private readonly float _reloadTime;
-        public bool Reloading { get; private set; }
+        public Weapon Weapon { get; set; }
+        private Weapon _shootGun = new ShotGun();
+        private Weapon _AutomaticGun = new AutomaticGun();
 
         public Player(Texture2D texture, Vector2 position, float Cooldown, float CooldownLeft) : base(texture, position)
         {
-            _cooldown = Cooldown;
-            _cooldownLeft = CooldownLeft;
-            _maxAmmo = 30;
-            Ammo = _maxAmmo;
-            _reloadTime = 2f;
-            Reloading = false;
+            Weapon = _shootGun;
         }
 
-        private void Reload()
+        //Переработать под большее количество оружия
+        public void Swap()
         {
-            if (Reloading) return;
-            _cooldownLeft = _reloadTime;
-            Reloading = true;
-            Ammo = _maxAmmo;
+            Weapon = (Weapon==_shootGun) ? _AutomaticGun : _shootGun;
         }
         
-        public void Fire()
-        {
-            if (_cooldownLeft > 0 || Reloading) return;
-
-            Ammo--;
-            if (Ammo > 0)
-            {
-                _cooldownLeft = _cooldown;
-            }
-            else Reload();
-
-            ProjectilesInfo pd = new()
-            {
-                Position = Position,
-                Rotation = Rotation,
-                LifeTime = 2,
-                Speed = 600
-            };
-
-            ProjectileController.AddProjectile(pd);
-            
-        }
 
         public void Update()
         {
-            if (_cooldownLeft > 0)
-                _cooldownLeft -= Global.TotalSeconds;
-            else if (Reloading)
-                Reloading = false;
-
             if(Input.Direction != Vector2.Zero)
             {
                 var directoin =  Vector2.Normalize(Input.Direction);
@@ -83,10 +46,17 @@ namespace Roguelike_2
             var toMouse = Input.MousePosition - Position;
             Rotation = (float)Math.Atan2(toMouse.Y, toMouse.X);
 
+            Weapon.Update();
+
+            if (Input.SpacePressed)
+                Swap();
+
             if (Input.MouseLeftDown)
-                Fire();
+                Weapon.Fire(this);
+
             if (Input.MouseRightClicked)
-                Reload();
+                Weapon.Reload();
+                
         }
     }
 }
