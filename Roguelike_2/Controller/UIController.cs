@@ -47,7 +47,7 @@ namespace Roguelike_2
 
             for (int i = 0; i < player.HP; i++)
             {
-                Vector2 position = new(Global.Bounds.X - _HP.Width*4, i * _HP.Height * 4);
+                Vector2 position = new(player.Position.X - _HP.Width * i, player.Position.Y - 30 * 2 );
                 Global.SpriteBatch.Draw(
                     _HP,
                     position,
@@ -55,7 +55,7 @@ namespace Roguelike_2
                     Color.White,
                     0,
                     Vector2.Zero,
-                    4,
+                    2,
                     SpriteEffects.None,
                     1);
             }

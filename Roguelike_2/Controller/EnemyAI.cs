@@ -49,7 +49,7 @@ namespace Roguelike_2
             position.X = (int)(_random.NextDouble() * height);
             position.Y = (int)(_random.NextDouble() * width);
 
-            if (Global.GetDistance(position, _playerPosition) < 50)
+            if (Global.GetDistance(position, _playerPosition) < 100)
             {
                 position.X -= 500;
                 position.Y -= 500;
@@ -81,7 +81,7 @@ namespace Roguelike_2
             
             foreach(var e in Enemies)
             {
-                e.Update(player);
+                e.Update(player, Enemies);
             }
             Enemies.RemoveAll(e => e.HP <= 0);
         }

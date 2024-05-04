@@ -25,7 +25,7 @@ namespace Roguelike_2
         public bool Dead { get; private set; }
         public int HP { get; private set; }
 
-        public Player(Texture2D texture, Vector2 position, float Cooldown, float CooldownLeft) : base(texture, position)
+        public Player(Texture2D texture, Vector2 position) : base(texture, position)
         {
             Weapon = _shootGun;
             HP = 3;

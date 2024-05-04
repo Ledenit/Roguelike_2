@@ -20,7 +20,7 @@ namespace Roguelike_2
         private readonly Player _player;
         public World()
         {
-            _player = new(Global.Content.Load<Texture2D>("hero"), new(Global.Bounds.X / 2, Global.Bounds.Y / 2), 0.25f, 0f);
+            _player = new(Global.Content.Load<Texture2D>("hero"), new(Global.Bounds.X / 2, Global.Bounds.Y / 2));
             var bullet = Global.Content.Load<Texture2D>("bullet");
             var hp = Global.Content.Load<Texture2D>("HP");
             ProjectileController.Initialize(bullet);
