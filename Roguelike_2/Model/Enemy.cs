@@ -30,11 +30,14 @@ namespace Roguelike_2
         public void TakeDamage(int damage)
         {
             HP -= damage;
+            if (HP <= 0) 
+                ExpController.AddExperience(Position);
         }
 
         public void ResetHP()
         {
             HP = 0;
+            ExpController.AddExperience(Position);
         }
 
         public void Update(Player player, List<Enemy> enemies)

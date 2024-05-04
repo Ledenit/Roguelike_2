@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Content;
+using SharpDX.Direct3D9;
 #endregion
 
 namespace Roguelike_2
@@ -19,11 +20,26 @@ namespace Roguelike_2
     {
         private static Texture2D _bullet;
         private static Texture2D _HP;
+        private static Texture2D _experience;
+        private static Vector2 _textPosition;
+        private static Vector2 _expPosition;
+        private static string _playerExp;
+        private static SpriteFont _font;
 
-        public static void Initialize(Texture2D bullet, Texture2D hp)
+        public static void Initialize(Texture2D bullet, Texture2D hp, Texture2D experience)
         {
             _bullet = bullet;
             _HP = hp;
+            _experience = experience;
+            _font = Global.Content.Load<SpriteFont>("font");
+            _expPosition = new(Global.Bounds.X - (2 * _experience.Width), 0);
+        }
+
+        public static void Update(Player player)
+        {
+            _playerExp = player.Experience.ToString();
+            var x = _font.MeasureString(_playerExp).X / 2;
+            _textPosition = new(Global.Bounds.X - x - 32, 14);
         }
 
         public static void Draw(Player player)
@@ -59,6 +75,9 @@ namespace Roguelike_2
                     SpriteEffects.None,
                     1);
             }
+
+            Global.SpriteBatch.Draw(_experience, _expPosition, null, Color.White * 0.75f, 0f, Vector2.Zero, 2f, SpriteEffects.None, 1f);
+            Global.SpriteBatch.DrawString(_font, _playerExp, _textPosition, Color.White);
         }
     }
 }

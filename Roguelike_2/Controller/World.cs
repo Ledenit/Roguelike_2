@@ -23,8 +23,10 @@ namespace Roguelike_2
             _player = new(Global.Content.Load<Texture2D>("hero"), new(Global.Bounds.X / 2, Global.Bounds.Y / 2));
             var bullet = Global.Content.Load<Texture2D>("bullet");
             var hp = Global.Content.Load<Texture2D>("HP");
+            var exp = Global.Content.Load<Texture2D>("exp");
+            ExpController.Initialize(exp);
             ProjectileController.Initialize(bullet);
-            UIController.Initialize(bullet, hp);
+            UIController.Initialize(bullet, hp, exp);
             EnemyAI.Initialize(_player.Position);
             EnemyAI.Initialize("mob");
             EnemyAI.AddEnemies();
@@ -35,6 +37,7 @@ namespace Roguelike_2
         public void Restart()
         {
             ProjectileController.Reset();
+            ExpController.Reset();
             EnemyAI.Reset();
             _player.Reset();
         }
@@ -43,7 +46,9 @@ namespace Roguelike_2
         {
             Input.Update();
             _player.Update(EnemyAI.Enemies);
+            UIController.Update(_player);
             ProjectileController.Update(EnemyAI.Enemies);
+            ExpController.Update(_player);
             EnemyAI.Update(_player);
 
             if (_player.Dead) Restart();
@@ -53,9 +58,9 @@ namespace Roguelike_2
         {
             _player.Draw();
             ProjectileController.Draw();
+            ExpController.Draw();
             EnemyAI.Draw();
             UIController.Draw(_player);
         }
-
     }
 }

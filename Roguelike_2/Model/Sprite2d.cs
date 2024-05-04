@@ -25,11 +25,14 @@ namespace Roguelike_2
         public float Speed { get; set; }
         public float Rotation { get; set; }
 
+        public float Scale { get; set; }
+
         public Sprite2d(Texture2D tex, Vector2 position)
         {
             texture = tex;
             Position = position;
             Speed = 300.0f;
+            Scale = 1f;
             origin = new(tex.Width / 2, tex.Height / 2);
         }
 
@@ -41,7 +44,7 @@ namespace Roguelike_2
                 Color.White,
                 Rotation,
                 origin,
-                1,
+                Scale,
                 SpriteEffects.None,
                 1);
         }

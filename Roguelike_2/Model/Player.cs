@@ -24,11 +24,13 @@ namespace Roguelike_2
         private Weapon _AutomaticGun = new AutomaticGun();
         public bool Dead { get; private set; }
         public int HP { get; private set; }
+        public int Experience { get; private set; }
 
         public Player(Texture2D texture, Vector2 position) : base(texture, position)
         {
             Weapon = _shootGun;
             HP = 3;
+            Experience = 0;
         }
 
         public void Reset()
@@ -38,7 +40,8 @@ namespace Roguelike_2
             _AutomaticGun = new AutomaticGun();
             Dead = false;
             Weapon = _shootGun;
-            Position = new(Global.Bounds.X / 2, Global.Bounds.Y / 2); ;
+            Position = new(Global.Bounds.X / 2, Global.Bounds.Y / 2);
+            Experience = 0;
         }
 
         //Переработать под большее количество оружия
@@ -60,6 +63,11 @@ namespace Roguelike_2
             }
 
             if (HP == 0) Dead = true;
+        }
+
+        public void GetExperience(int experience)
+        {
+            Experience += experience;
         }
 
         public void Update(List<Enemy> Enemies)
