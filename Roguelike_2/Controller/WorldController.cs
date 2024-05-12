@@ -11,15 +11,19 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Content;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrayNotify;
 #endregion
 
 namespace Roguelike_2
 {
-    public class World
+    public class WorldController
     {
         private readonly Player _player;
-        public World()
+        private readonly Background _background;
+        public WorldController()
         {
+            Global.IsPlayerDead = false;
+            _background = new(Global.Content.Load<Texture2D>("background"), new(Global.Bounds.X / 2, Global.Bounds.Y / 2));
             _player = new(Global.Content.Load<Texture2D>("hero"), new(Global.Bounds.X / 2, Global.Bounds.Y / 2));
             var bullet = Global.Content.Load<Texture2D>("bullet");
             var hp = Global.Content.Load<Texture2D>("HP");
@@ -36,26 +40,30 @@ namespace Roguelike_2
 
         public void Restart()
         {
+            Global.IsPlayerDead = false;
             ProjectileController.Reset();
             ExpController.Reset();
             EnemyAI.Reset();
             _player.Reset();
+            _background.Reset();
         }
 
         public void Update()
         {
             Input.Update();
+            _background.Update();
             _player.Update(EnemyAI.Enemies);
             UIController.Update(_player);
             ProjectileController.Update(EnemyAI.Enemies);
             ExpController.Update(_player);
             EnemyAI.Update(_player);
 
-            if (_player.Dead) Restart();
+            if (_player.Dead) Global.IsPlayerDead=true;
         }
 
         public void Draw()
         {
+            _background.Draw();
             _player.Draw();
             ProjectileController.Draw();
             ExpController.Draw();

@@ -84,6 +84,10 @@ namespace Roguelike_2
                 e.Update(player, Enemies);
             }
             Enemies.RemoveAll(e => e.HP <= 0);
+            Enemies.RemoveAll(e => e.Position.X <= -100);
+            Enemies.RemoveAll(e => e.Position.X >= Global.Bounds.X + 100);
+            Enemies.RemoveAll(e => e.Position.Y <= -100);
+            Enemies.RemoveAll(e => e.Position.Y >= Global.Bounds.Y + 100);
         }
 
         public static void Draw()
@@ -93,6 +97,5 @@ namespace Roguelike_2
                 e.Draw();
             }
         }
-
     }
 }

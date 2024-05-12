@@ -21,7 +21,7 @@ namespace Roguelike_2
         protected readonly Texture2D texture;
         protected readonly Vector2 origin;
 
-        public Vector2 Position { get; set; }
+        public Vector2 Position;
         public float Speed { get; set; }
         public float Rotation { get; set; }
 
@@ -31,7 +31,7 @@ namespace Roguelike_2
         {
             texture = tex;
             Position = position;
-            Speed = 300.0f;
+            Speed = 100.0f;
             Scale = 1f;
             origin = new(tex.Width / 2, tex.Height / 2);
         }

@@ -24,6 +24,10 @@ namespace Roguelike_2
 
         public static Point Bounds { get; set; }
 
+        public static bool IsGameActive {  get; set; }
+        public static bool IsGamePaused { get; set; }
+        public static bool IsPlayerDead { get; set; }
+
         public static void Update(GameTime gameTime)
         {
             TotalSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds;

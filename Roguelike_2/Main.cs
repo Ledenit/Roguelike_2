@@ -19,13 +19,18 @@ namespace Roguelike_2
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        private World _world;
+        private WorldController _world;
+        private MainMenu _mainMenu;
+        private PauseMenu _pauseMenu;
+        private DeathMenu _deathMenu;
 
         public Main()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            Global.IsGameActive = false;
+            Global.IsGamePaused = false;
         }
 
         protected override void Initialize()
@@ -37,6 +42,9 @@ namespace Roguelike_2
 
             Global.Content = Content;
             _world = new();
+            _mainMenu = new();
+            _pauseMenu = new();
+            _deathMenu = new();
 
             base.Initialize();
         }
@@ -45,16 +53,33 @@ namespace Roguelike_2
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             Global.SpriteBatch = _spriteBatch;
-
         }
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            if (Global.IsPlayerDead)
+            {
+                _deathMenu.Update(_world);
+            }
+            else
+            {
+                if (Global.IsGameActive)
+                {
+                    if (Keyboard.GetState().IsKeyDown(Keys.Escape)) Global.IsGamePaused = true;
+                    if (Global.IsGamePaused)
+                        _pauseMenu.Update();
+                    else
+                        _world.Update();
+                }
+                else
+                {
+                    _mainMenu.Update(_world);
+                    if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+                        Exit();
+                }
+            }
 
             Global.Update(gameTime);
-            _world.Update();
 
             base.Update(gameTime);
         }
@@ -64,7 +89,22 @@ namespace Roguelike_2
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin();
-            _world.Draw();
+
+            if (Global.IsPlayerDead)
+                _deathMenu.Draw();
+            else
+            {
+                if (Global.IsGameActive)
+                {
+                    if (Global.IsGamePaused)
+                        _pauseMenu.Draw();
+                    else
+                        _world.Draw();
+                }
+                else
+                    _mainMenu.Draw();
+            }
+
             _spriteBatch.End();
 
             base.Draw(gameTime);

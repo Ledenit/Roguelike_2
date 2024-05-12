@@ -33,6 +33,7 @@ namespace Roguelike_2
             _experience = experience;
             _font = Global.Content.Load<SpriteFont>("font");
             _expPosition = new(Global.Bounds.X - (2 * _experience.Width), 0);
+            _playerExp = "";
         }
 
         public static void Update(Player player)

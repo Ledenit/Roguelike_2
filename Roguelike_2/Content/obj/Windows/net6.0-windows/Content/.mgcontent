@@ -4,15 +4,29 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/background.png</File>
     <File>C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/bullet.png</File>
+    <File>C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/Button.png</File>
     <File>C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/cursor.png</File>
     <File>C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/exp.png</File>
     <File>C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/font.spritefont</File>
     <File>C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/hero.png</File>
     <File>C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/HP.png</File>
     <File>C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/mob.png</File>
+    <File>C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/tile1.png</File>
+    <File>C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/tile2.png</File>
+    <File>C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/tile3.png</File>
+    <File>C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/tile4.png</File>
+    <File>C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/tile5.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

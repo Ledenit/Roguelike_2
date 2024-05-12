@@ -72,12 +72,6 @@ namespace Roguelike_2
 
         public void Update(List<Enemy> Enemies)
         {
-            if(Input.Direction != Vector2.Zero)
-            {
-                var directoin =  Vector2.Normalize(Input.Direction);
-                Position += directoin * Speed * Global.TotalSeconds;
-            }
-
             var toMouse = Input.MousePosition - Position;
             Rotation = (float)Math.Atan2(toMouse.Y, toMouse.X);
 

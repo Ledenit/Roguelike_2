@@ -40,10 +40,10 @@ namespace Roguelike_2
             var mouseState = Mouse.GetState();
 
             _direction = Vector2.Zero;
-            if (keyboardState.IsKeyDown(Keys.A)) _direction.X--;
-            if (keyboardState.IsKeyDown(Keys.D)) _direction.X++;
-            if (keyboardState.IsKeyDown(Keys.W)) _direction.Y--;
-            if (keyboardState.IsKeyDown(Keys.S)) _direction.Y++;
+            if (keyboardState.IsKeyDown(Keys.A)) _direction.X++;
+            if (keyboardState.IsKeyDown(Keys.D)) _direction.X--;
+            if (keyboardState.IsKeyDown(Keys.W)) _direction.Y++;
+            if (keyboardState.IsKeyDown(Keys.S)) _direction.Y--;
 
             MouseLeftClicked = Mouse.GetState().LeftButton == ButtonState.Pressed && _lastMouseState.LeftButton == ButtonState.Released;
             MouseRightDown = Mouse.GetState().RightButton == ButtonState.Pressed;

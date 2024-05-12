@@ -15,14 +15,15 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Roguelike_2
 {
-    public class Enemy : Sprite2d
+    public class Enemy : SpriteMoving
     {
         public int HP { get; private set; }
         private List<Vector2> obstacles;
+        public float EnemySpeed { get; set; }
 
-        public Enemy(Texture2D tex, Vector2 position) : base(tex, position)
+        public Enemy(Texture2D texture, Vector2 position) : base(texture, position)
         {
-            Speed = 100;
+            EnemySpeed = 100;
             HP = 2;
             obstacles = new List<Vector2>();
         }
@@ -42,6 +43,8 @@ namespace Roguelike_2
 
         public void Update(Player player, List<Enemy> enemies)
         {
+            Update();
+
             var toPlayer = player.Position - Position;
             Rotation = (float)Math.Atan2(toPlayer.Y, toPlayer.X);
 
@@ -59,7 +62,7 @@ namespace Roguelike_2
             if (toPlayer.Length() > 50)
             {
                 var dir = Vector2.Normalize(toPlayer);
-                Position += dir * Speed * Global.TotalSeconds;
+                Position += dir * EnemySpeed * Global.TotalSeconds;
             }
         }
 
@@ -73,7 +76,7 @@ namespace Roguelike_2
                 if (distance < 50)
                 {
                     var avoidanceDir = Vector2.Normalize(Position - obstacle);
-                    Position += avoidanceDir * Speed * Global.TotalSeconds;
+                    Position += avoidanceDir * EnemySpeed * Global.TotalSeconds;
                 }
             }
         }

@@ -17,7 +17,7 @@ using SharpDX.Direct2D1.Effects;
 
 namespace Roguelike_2
 {
-    public class Experience : Sprite2d
+    public class Experience : SpriteMoving
     {
         public float Lifespan { get; private set; }
         private const float LIFE = 5f;
@@ -27,8 +27,9 @@ namespace Roguelike_2
             Lifespan = LIFE;
         }
 
-        public void Update()
+        public new void Update()
         {
+            base.Update();
             Lifespan -= Global.TotalSeconds;
             Scale = 0.33f + (Lifespan / LIFE * 0.66f);
         }
