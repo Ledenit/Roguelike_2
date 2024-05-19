@@ -19,41 +19,28 @@ namespace Roguelike_2
     public static class EnemyAI
     {
         public static List<Enemy> Enemies { get; } = new();
-        private static List<Texture2D> _textures = new();
-        private static List<(int HP, float Speed)> _enemyAttributes = new();
-        private static List<Texture2D> _bulletTextures = new();
-        private static List<float> _shootCooldowns = new();
+
+        public static List<Texture2D> _texture { get; } = new();
+        public static List<(int HP, float Speed)> _enemyAttributes { get; } = new();
 
         private static float _spawnCooldown;
         private static float _spawnTime;
         private static Random _random;
         private static Vector2 _playerPosition;
 
-        public static void Initialize(Vector2 playerPosition)
+
+        public static void Initialize(string name, int hp, float speed)
         {
-            _playerPosition = playerPosition;
+            _texture.Add(Global.Content.Load<Texture2D>(name));
+            _enemyAttributes.Add((hp, speed));
             _spawnCooldown = 1.5f;
             _spawnTime = _spawnCooldown;
             _random = new();
         }
 
-        public static void AddEnemyType(string enemyTextureName, int hp, float speed, string bulletTextureName = null, float shootCooldown = 0)
+        public static void Initialize(Vector2 playerPosition)
         {
-            var texture = Global.Content.Load<Texture2D>(enemyTextureName);
-            _textures.Add(texture);
-            _enemyAttributes.Add((hp, speed));
-
-            if (!string.IsNullOrEmpty(bulletTextureName))
-            {
-                var bulletTexture = Global.Content.Load<Texture2D>(bulletTextureName);
-                _bulletTextures.Add(bulletTexture);
-                _shootCooldowns.Add(shootCooldown);
-            }
-            else
-            {
-                _bulletTextures.Add(null);
-                _shootCooldowns.Add(0);
-            }
+            _playerPosition = playerPosition;
         }
 
         private static Vector2 RandomPosition()
@@ -76,21 +63,11 @@ namespace Roguelike_2
 
         public static void AddEnemies()
         {
-            for (int i = 0; i < _textures.Count; i++)
+            for (int i = 0; i < _texture.Count; i++)
             {
-                var texture = _textures[i];
+                var texture = _texture[i];
                 var (hp, speed) = _enemyAttributes[i];
-                var bulletTexture = _bulletTextures[i];
-                var shootCooldown = _shootCooldowns[i];
-
-                if (bulletTexture != null)
-                {
-                    Enemies.Add(new ShootingEnemy(texture, RandomPosition(), hp, speed, bulletTexture, shootCooldown));
-                }
-                else
-                {
-                    Enemies.Add(new Enemy(texture, RandomPosition(), hp, speed));
-                }
+                Enemies.Add(new Enemy(texture, RandomPosition(), hp, speed));
             }
         }
 
@@ -108,13 +85,13 @@ namespace Roguelike_2
         public static void Update(Player player)
         {
             _spawnTime -= Global.TotalSeconds;
-            if (_spawnTime <= 0)
+            if(_spawnTime <= 0) 
             {
                 _spawnTime += _spawnCooldown;
                 AddEnemies();
             }
-
-            foreach (var e in Enemies)
+            
+            foreach(var e in Enemies)
             {
                 e.Update(player, Enemies);
             }

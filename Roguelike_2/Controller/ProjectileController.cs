@@ -19,15 +19,13 @@ namespace Roguelike_2
 {
     public static class ProjectileController
     {
-        private static Texture2D _playerTexture;
-        private static Texture2D _enemyTexture;
+        private static Texture2D _texture;
 
         public static List<Projectiles> Projectiles { get; } = new();
 
-        public static void Initialize(Texture2D playerTexture, Texture2D enemyTexture)
+        public static void Initialize(Texture2D texture)
         {
-            _playerTexture = playerTexture;
-            _enemyTexture = enemyTexture;
+            _texture = texture;
         }
 
         public static void Reset()
@@ -37,20 +35,15 @@ namespace Roguelike_2
 
         public static void AddProjectile(ProjectilesInfo info)
         {
-            Projectiles.Add(new(_playerTexture, info));
-        }
-
-        public static void AddEnemyProjectile(ProjectilesInfo info)
-        {
-            Projectiles.Add(new(_enemyTexture, info));
+            Projectiles.Add(new(_texture, info));
         }
 
         public static void Update(List<Enemy> enemies)
         {
-            foreach (var p in Projectiles)
+            foreach(var p in Projectiles)
             {
                 p.Update();
-                foreach (var e in enemies)
+                foreach(var e in enemies)
                 {
                     if (e.HP <= 0) continue;
                     if ((p.Position - e.Position).Length() < 30)
@@ -60,13 +53,14 @@ namespace Roguelike_2
                         break;
                     }
                 }
+
             }
             Projectiles.RemoveAll((p) => p.LifeTime <= 0);
         }
 
         public static void Draw()
         {
-            foreach (var p in Projectiles)
+            foreach(var p in Projectiles)
             {
                 p.Draw();
             }

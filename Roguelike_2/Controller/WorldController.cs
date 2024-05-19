@@ -30,15 +30,11 @@ namespace Roguelike_2
             var hp = Global.Content.Load<Texture2D>("HP");
             var exp = Global.Content.Load<Texture2D>("exp");
             ExpController.Initialize(exp);
-            ProjectileController.Initialize(bullet, null);
+            ProjectileController.Initialize(bullet);
             UIController.Initialize(bullet, hp, exp);
             EnemyAI.Initialize(_player.Position);
-
-            // Add normal enemies
-            EnemyAI.AddEnemyType("mob", 2, 120);
-            // Add shooting enemies
-            EnemyAI.AddEnemyType("hero", 1, 150, "exp", 2.0f);
-
+            EnemyAI.Initialize("mob", 2, 100);
+            EnemyAI.Initialize("hero", 1, 150);
             EnemyAI.AddEnemies();
         }
 
