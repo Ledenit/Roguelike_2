@@ -49,3 +49,8 @@ C:\Users\georg\C#_Game\Roguelike_2\Roguelike_2\bin\Debug\net6.0-windows\Content\
 C:\Users\georg\C#_Game\Roguelike_2\Roguelike_2\bin\Debug\net6.0-windows\Content\tile4.xnb
 C:\Users\georg\C#_Game\Roguelike_2\Roguelike_2\bin\Debug\net6.0-windows\Content\tile5.xnb
 C:\Users\georg\C#_Game\Roguelike_2\Roguelike_2\bin\Debug\net6.0-windows\Content\Button.xnb
+C:\Users\georg\C#_Game\Roguelike_2\Roguelike_2\bin\Debug\net6.0-windows\Content\ExitButton.xnb
+C:\Users\georg\C#_Game\Roguelike_2\Roguelike_2\bin\Debug\net6.0-windows\Content\ExitMainMenuButton.xnb
+C:\Users\georg\C#_Game\Roguelike_2\Roguelike_2\bin\Debug\net6.0-windows\Content\RestartGameButton.xnb
+C:\Users\georg\C#_Game\Roguelike_2\Roguelike_2\bin\Debug\net6.0-windows\Content\ResumeGameButton.xnb
+C:\Users\georg\C#_Game\Roguelike_2\Roguelike_2\bin\Debug\net6.0-windows\Content\StartGameButton.xnb

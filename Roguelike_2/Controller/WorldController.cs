@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Content;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrayNotify;
+using SharpDX.Direct2D1;
 #endregion
 
 namespace Roguelike_2
@@ -29,12 +30,15 @@ namespace Roguelike_2
             var hp = Global.Content.Load<Texture2D>("HP");
             var exp = Global.Content.Load<Texture2D>("exp");
             ExpController.Initialize(exp);
-            ProjectileController.Initialize(bullet);
+            ProjectileController.Initialize(bullet, null);
             UIController.Initialize(bullet, hp, exp);
             EnemyAI.Initialize(_player.Position);
-            EnemyAI.Initialize("mob");
-            EnemyAI.AddEnemies();
-            EnemyAI.Initialize("hero");
+
+            // Add normal enemies
+            EnemyAI.AddEnemyType("mob", 2, 120);
+            // Add shooting enemies
+            EnemyAI.AddEnemyType("hero", 1, 150, "exp", 2.0f);
+
             EnemyAI.AddEnemies();
         }
 
@@ -58,16 +62,22 @@ namespace Roguelike_2
             ExpController.Update(_player);
             EnemyAI.Update(_player);
 
+            if (_player.Experience > 10)
+            {
+                var textureToRemove = Global.Content.Load<Texture2D>("mob");
+                EnemyAI.RemoveEnemies(textureToRemove);
+            }
+
             if (_player.Dead) Global.IsPlayerDead=true;
         }
 
-        public void Draw()
+        public void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
         {
             _background.Draw();
             _player.Draw();
             ProjectileController.Draw();
             ExpController.Draw();
-            EnemyAI.Draw();
+            EnemyAI.Draw(spriteBatch);
             UIController.Draw(_player);
         }
     }

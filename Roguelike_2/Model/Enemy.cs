@@ -18,13 +18,17 @@ namespace Roguelike_2
     public class Enemy : SpriteMoving
     {
         public int HP { get; private set; }
+        private int maxHP;
         private List<Vector2> obstacles;
+        public Texture2D Texture { get; private set; }
         public float EnemySpeed { get; set; }
 
-        public Enemy(Texture2D texture, Vector2 position) : base(texture, position)
+        public Enemy(Texture2D texture, Vector2 position, int hp, float speed) : base(texture, position)
         {
-            EnemySpeed = 100;
-            HP = 2;
+            EnemySpeed = speed;
+            Texture = texture;
+            HP = hp;
+            maxHP = hp;
             obstacles = new List<Vector2>();
         }
 
@@ -41,7 +45,7 @@ namespace Roguelike_2
             ExpController.AddExperience(Position);
         }
 
-        public void Update(Player player, List<Enemy> enemies)
+        public virtual void Update(Player player, List<Enemy> enemies)
         {
             Update();
 
@@ -79,6 +83,26 @@ namespace Roguelike_2
                     Position += avoidanceDir * EnemySpeed * Global.TotalSeconds;
                 }
             }
+        }
+
+        public void DrawHealthBar(SpriteBatch spriteBatch)
+        {
+            if (HP >= maxHP) return;
+
+            int barWidth = 50;
+            int barHeight = 5;
+            Vector2 barPosition = new Vector2(Position.X - barWidth / 2, Position.Y - Texture.Height / 2 - barHeight - 5);
+
+            float healthPercentage = (float)HP / maxHP;
+
+            Texture2D healthBarBackground = new Texture2D(spriteBatch.GraphicsDevice, 1, 1);
+            healthBarBackground.SetData(new[] { Color.Gray });
+
+            Texture2D healthBarForeground = new Texture2D(spriteBatch.GraphicsDevice, 1, 1);
+            healthBarForeground.SetData(new[] { Color.Red });
+
+            spriteBatch.Draw(healthBarBackground, new Rectangle((int)barPosition.X, (int)barPosition.Y, barWidth, barHeight), Color.White);
+            spriteBatch.Draw(healthBarForeground, new Rectangle((int)barPosition.X, (int)barPosition.Y, (int)(barWidth * healthPercentage), barHeight), Color.White);
         }
     }
 }

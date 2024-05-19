@@ -23,8 +23,8 @@ namespace Roguelike_2
         private Rectangle exitButtonRectangle;
         public MainMenu()
         {
-            startButtonTexture = Global.Content.Load<Texture2D>("Button");
-            exitButtonTexture = Global.Content.Load<Texture2D>("Button");
+            startButtonTexture = Global.Content.Load<Texture2D>("StartGameButton");
+            exitButtonTexture = Global.Content.Load<Texture2D>("ExitButton");
 
             startButtonRectangle = new Rectangle(
                 (Global.Bounds.X - startButtonTexture.Width * 2) / 2,

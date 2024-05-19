@@ -17,27 +17,36 @@ namespace Roguelike_2
 {
     public class DeathMenu
     {
-        private Texture2D resumeButtonTexture;
+        private Texture2D restartButtonTexture;
         private Texture2D mainMenuButtonTexture;
+        private Texture2D exitButtonTexture;
         private Rectangle restartButtonRectangle;
         private Rectangle mainMenuButtonRectangle;
+        private Rectangle exitButtonRectangle;
 
         public DeathMenu()
         {
-            resumeButtonTexture = Global.Content.Load<Texture2D>("Button");
-            mainMenuButtonTexture = Global.Content.Load<Texture2D>("Button");
+            restartButtonTexture = Global.Content.Load<Texture2D>("RestartGameButton");
+            mainMenuButtonTexture = Global.Content.Load<Texture2D>("ExitMainMenuButton");
+            exitButtonTexture = Global.Content.Load<Texture2D>("ExitButton");
 
             restartButtonRectangle = new Rectangle(
-                (Global.Bounds.X - resumeButtonTexture.Width * 2) / 2,
-                (600 + resumeButtonTexture.Height * 2) / 2,
-                resumeButtonTexture.Width * 2,
-                resumeButtonTexture.Height * 2);
+                (Global.Bounds.X - restartButtonTexture.Width * 2) / 2,
+                (600 + restartButtonTexture.Height * 2) / 2,
+                restartButtonTexture.Width * 2,
+                restartButtonTexture.Height * 2);
 
             mainMenuButtonRectangle = new Rectangle(
-                (Global.Bounds.X + 200 - mainMenuButtonTexture.Width * 2) / 2,
+                (Global.Bounds.X - mainMenuButtonTexture.Width * 2) / 2,
                 restartButtonRectangle.Bottom + 20,
                 mainMenuButtonTexture.Width * 2,
                 mainMenuButtonTexture.Height * 2);
+
+            exitButtonRectangle = new Rectangle(
+               (Global.Bounds.X - exitButtonTexture.Width * 2) / 2,
+               mainMenuButtonRectangle.Bottom + 20,
+               exitButtonTexture.Width * 2,
+               exitButtonTexture.Height * 2);
         }
 
         public void Update(WorldController _world)
@@ -56,13 +65,18 @@ namespace Roguelike_2
                     Global.IsGameActive = false;
                     Global.IsPlayerDead = false;
                 }
+                else if (exitButtonRectangle.Contains(Mouse.GetState().Position))
+                {
+                    Environment.Exit(0);
+                }
             }
         }
 
         public void Draw()
         {
-            Global.SpriteBatch.Draw(resumeButtonTexture, restartButtonRectangle, Color.White);
+            Global.SpriteBatch.Draw(restartButtonTexture, restartButtonRectangle, Color.White);
             Global.SpriteBatch.Draw(mainMenuButtonTexture, mainMenuButtonRectangle, Color.White);
+            Global.SpriteBatch.Draw(exitButtonTexture, exitButtonRectangle, Color.White);
         }
     }
 }

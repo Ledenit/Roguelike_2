@@ -67,7 +67,7 @@ namespace Roguelike_2
                 {
                     if (Keyboard.GetState().IsKeyDown(Keys.Escape)) Global.IsGamePaused = true;
                     if (Global.IsGamePaused)
-                        _pauseMenu.Update();
+                        _pauseMenu.Update(_world);
                     else
                         _world.Update();
                 }
@@ -99,7 +99,7 @@ namespace Roguelike_2
                     if (Global.IsGamePaused)
                         _pauseMenu.Draw();
                     else
-                        _world.Draw();
+                        _world.Draw(_spriteBatch);
                 }
                 else
                     _mainMenu.Draw();
