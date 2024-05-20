@@ -19,25 +19,35 @@ namespace Roguelike_2
     {
         private Texture2D startButtonTexture;
         private Texture2D exitButtonTexture;
+        private Texture2D tutorialTexture;
         private Rectangle startButtonRectangle;
         private Rectangle exitButtonRectangle;
+        private Rectangle tutorialButtonRectangle;
+
         public MainMenu()
         {
             startButtonTexture = Global.Content.Load<Texture2D>("StartGameButton");
             exitButtonTexture = Global.Content.Load<Texture2D>("ExitButton");
+            tutorialTexture = Global.Content.Load<Texture2D>("Tutorial");
 
             startButtonRectangle = new Rectangle(
-                (Global.Bounds.X - startButtonTexture.Width * 2) / 2,
-                (200 + startButtonTexture.Height * 2) / 2,
-                startButtonTexture.Width * 2,
-                startButtonTexture.Height * 2);
+                (Global.Bounds.X - startButtonTexture.Width) / 2,
+                (200 + startButtonTexture.Height) / 2,
+                startButtonTexture.Width,
+                startButtonTexture.Height);
 
  
             exitButtonRectangle = new Rectangle(
-                (Global.Bounds.X - exitButtonTexture.Width * 2) / 2,
+                (Global.Bounds.X - exitButtonTexture.Width) / 2,
                 startButtonRectangle.Bottom + 20,
-                exitButtonTexture.Width * 2,
-                exitButtonTexture.Height * 2);
+                exitButtonTexture.Width,
+                exitButtonTexture.Height);
+
+            tutorialButtonRectangle = new Rectangle(
+                (Global.Bounds.X - tutorialTexture.Width) / 2,
+                exitButtonRectangle.Bottom + 110,
+                tutorialTexture.Width,
+                tutorialTexture.Height);
         }
 
         public void Update(WorldController _world)
@@ -62,6 +72,7 @@ namespace Roguelike_2
         {
             Global.SpriteBatch.Draw(startButtonTexture, startButtonRectangle, Color.White);
             Global.SpriteBatch.Draw(exitButtonTexture, exitButtonRectangle, Color.White);
+            Global.SpriteBatch.Draw(tutorialTexture, tutorialButtonRectangle, Color.White);
         }
     }
 }

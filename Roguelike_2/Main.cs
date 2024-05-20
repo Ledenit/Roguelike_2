@@ -86,7 +86,7 @@ namespace Roguelike_2
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(new Color(162, 93, 38));
 
             _spriteBatch.Begin();
 

@@ -20,7 +20,6 @@ namespace Roguelike_2
     public class Box : SpriteMoving
     {
         public bool IsDestroyed { get; private set; }
-        private static Random random = new Random();
 
         public Box(Texture2D texture, Vector2 position) : base(texture, position)
         {

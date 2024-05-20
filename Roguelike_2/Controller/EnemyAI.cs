@@ -29,11 +29,11 @@ namespace Roguelike_2
         private static Vector2 _playerPosition;
 
 
-        public static void Initialize(string name, int hp, float speed)
+        public static void Initialize(string name, int hp, float speed, float spawnCooldown)
         {
             _texture.Add(Global.Content.Load<Texture2D>(name));
             _enemyAttributes.Add((hp, speed));
-            _spawnCooldown = 1.5f;
+            _spawnCooldown = spawnCooldown;
             _spawnTime = _spawnCooldown;
             _random = new();
         }
@@ -90,10 +90,10 @@ namespace Roguelike_2
                 _spawnTime += _spawnCooldown;
                 AddEnemies();
             }
-            
-            foreach(var e in Enemies)
+
+            foreach (var e in Enemies)
             {
-                e.Update(player, Enemies);
+                e.Update(player, Enemies, BoxController.Boxes);
             }
             Enemies.RemoveAll(e => e.HP <= 0);
             Enemies.RemoveAll(e => e.Position.X <= -100);

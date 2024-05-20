@@ -45,7 +45,7 @@ namespace Roguelike_2
             ExpController.AddExperience(Position);
         }
 
-        public virtual void Update(Player player, List<Enemy> enemies)
+        public virtual void Update(Player player, List<Enemy> enemies, List<Box> boxes)
         {
             Update();
 
@@ -54,6 +54,11 @@ namespace Roguelike_2
 
             obstacles.Clear();
             obstacles.Add(player.Bounds);
+
+            foreach (var box in boxes)
+            {
+                obstacles.Add(box.Bounds);
+            }
 
             foreach (var enemy in enemies)
             {

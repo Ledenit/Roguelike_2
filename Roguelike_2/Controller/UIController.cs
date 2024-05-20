@@ -40,7 +40,7 @@ namespace Roguelike_2
         {
             _playerExp = player.Experience.ToString();
             var x = _font.MeasureString(_playerExp).X / 2;
-            _textPosition = new(Global.Bounds.X - x - 32, 14);
+            _textPosition = new(Global.Bounds.X - x - 39, 20);
         }
 
         public static void Draw(Player player)
@@ -49,7 +49,7 @@ namespace Roguelike_2
 
             for (int i=0; i< player.Weapon.Ammo; i++)
             {
-                Vector2 position = new(0, i * _bullet.Height * 2);
+                Vector2 position = new(0, i * _bullet.Height * 3);
                 Global.SpriteBatch.Draw(
                     _bullet, 
                     position, 
@@ -57,14 +57,14 @@ namespace Roguelike_2
                     colorBullet * 0.75f,
                     0,
                     Vector2.Zero, 
-                    2,
+                    3,
                     SpriteEffects.None, 
                     1);
             }
 
             for (int i = 0; i < player.HP; i++)
             {
-                Vector2 position = new(player.Position.X - _HP.Width * i, player.Position.Y - 30 * 2 );
+                Vector2 position = new(player.Position.X - _HP.Width * i * 0.5f, player.Position.Y - 45 );
                 Global.SpriteBatch.Draw(
                     _HP,
                     position,
@@ -72,7 +72,7 @@ namespace Roguelike_2
                     Color.White,
                     0,
                     Vector2.Zero,
-                    2,
+                    0.5f,
                     SpriteEffects.None,
                     1);
             }

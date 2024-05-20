@@ -26,7 +26,7 @@ namespace Roguelike_2
         private static float _spawnTime;
         private static Random _random = new Random();
 
-        public static void Initialize(Texture2D texture, float spawnCooldown = 5f)
+        public static void Initialize(Texture2D texture, float spawnCooldown = 10f)
         {
             _texture = texture;
             _spawnCooldown = spawnCooldown;

@@ -21,22 +21,25 @@ namespace Roguelike_2
     {
         private readonly Player _player;
         private readonly Background _background;
+        private bool _monster2Spawned = false;
+        private bool _monster3Spawned = false;
+        private bool _monster4Spawned = false;
         public WorldController()
         {
             Global.IsPlayerDead = false;
             _background = new(Global.Content.Load<Texture2D>("background"), new(Global.Bounds.X / 2, Global.Bounds.Y / 2));
-            _player = new(Global.Content.Load<Texture2D>("hero"), new(Global.Bounds.X / 2, Global.Bounds.Y / 2));
+            _player = new(Global.Content.Load<Texture2D>("hero-pixel"), new(Global.Bounds.X / 2, Global.Bounds.Y / 2));
             var bullet = Global.Content.Load<Texture2D>("bullet");
+            var box = Global.Content.Load<Texture2D>("box");
             var hp = Global.Content.Load<Texture2D>("HP");
             var exp = Global.Content.Load<Texture2D>("exp");
             ExpController.Initialize(exp);
-            BoxController.Initialize(exp);
+            BoxController.Initialize(box);
             HeartController.Initialize(hp);
             ProjectileController.Initialize(bullet);
             UIController.Initialize(bullet, hp, exp);
             EnemyAI.Initialize(_player.Position);
-            EnemyAI.Initialize("mob", 2, 100);
-            EnemyAI.Initialize("hero", 1, 150);
+            EnemyAI.Initialize("mob1", 2, 100, 2f);
             EnemyAI.AddEnemies();
         }
 
@@ -64,11 +67,43 @@ namespace Roguelike_2
             ExpController.Update(_player);
             EnemyAI.Update(_player);
 
-            if (_player.Experience > 10)
+            //if (_player.Experience > 10)
+            //{
+            //    var textureToRemove = Global.Content.Load<Texture2D>("mob");
+            //    EnemyAI.RemoveEnemies(textureToRemove);
+            //}
+
+            if (_player.Experience >= 20 && !_monster2Spawned)
             {
-                var textureToRemove = Global.Content.Load<Texture2D>("mob");
-                EnemyAI.RemoveEnemies(textureToRemove);
+                EnemyAI.Initialize("mob2", 1, 220, 2.5f);
+                EnemyAI.AddEnemies();
+
+                _player.MaxHP += 1;
+                _player.HP = _player.MaxHP;
+                _monster2Spawned = true; 
             }
+
+            if (_player.Experience >= 30 && !_monster3Spawned)
+            {
+                EnemyAI.Initialize("mob4", 3, 190, 3f);
+                EnemyAI.AddEnemies();
+
+                _player.MaxHP += 1;
+                _player.HP = _player.MaxHP;
+                _monster3Spawned = true;
+            }
+
+            if (_player.Experience >= 40 && !_monster4Spawned)
+            {
+                
+                EnemyAI.Initialize("mob3", 5, 60, 4f);
+                EnemyAI.AddEnemies();
+
+                _player.MaxHP += 1;
+                _player.HP = _player.MaxHP;
+                _monster4Spawned = true;
+            }
+
 
             if (_player.Dead) Global.IsPlayerDead=true;
         }

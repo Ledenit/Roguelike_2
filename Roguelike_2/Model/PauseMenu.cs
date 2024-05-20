@@ -34,35 +34,34 @@ namespace Roguelike_2
             exitButtonTexture = Global.Content.Load<Texture2D>("ExitButton");
 
             resumeButtonRectangle = new Rectangle(
-                (Global.Bounds.X - resumeButtonTexture.Width * 2) / 2,
-                (600 + resumeButtonTexture.Height * 2) / 2,
-                resumeButtonTexture.Width * 2,
-                resumeButtonTexture.Height * 2);
+                (Global.Bounds.X - resumeButtonTexture.Width) / 2,
+                (400 + resumeButtonTexture.Height ) / 2,
+                resumeButtonTexture.Width,
+                resumeButtonTexture.Height);
 
             restartButtonRectangle = new Rectangle(
-                (Global.Bounds.X - restartButtonTexture.Width * 2) / 2,
+                (Global.Bounds.X - restartButtonTexture.Width) / 2,
                 resumeButtonRectangle.Bottom + 20,
-                restartButtonTexture.Width * 2,
-                restartButtonTexture.Height * 2);
+                restartButtonTexture.Width,
+                restartButtonTexture.Height);
 
             mainMenuButtonRectangle = new Rectangle(
-                (Global.Bounds.X - mainMenuButtonTexture.Width * 2) / 2,
+                (Global.Bounds.X - mainMenuButtonTexture.Width) / 2,
                 restartButtonRectangle.Bottom + 20,
-                mainMenuButtonTexture.Width * 2,
-                mainMenuButtonTexture.Height * 2);
+                mainMenuButtonTexture.Width,
+                mainMenuButtonTexture.Height);
 
             exitButtonRectangle = new Rectangle(
-                (Global.Bounds.X - exitButtonTexture.Width * 2) / 2,
+                (Global.Bounds.X - exitButtonTexture.Width) / 2,
                 mainMenuButtonRectangle.Bottom + 20,
-                exitButtonTexture.Width * 2,
-                exitButtonTexture.Height * 2);
+                exitButtonTexture.Width,
+                exitButtonTexture.Height);
         }
 
         public void Update(WorldController _world)
         {
             if (Mouse.GetState().LeftButton == ButtonState.Pressed)
             {
-                //продолжить игру
                 if (resumeButtonRectangle.Contains(Mouse.GetState().Position))
                 {
                     Global.IsGamePaused = false; 
@@ -73,11 +72,11 @@ namespace Roguelike_2
                     Global.IsGamePaused = false;
                     Global.IsGameActive = true;
                 }
-                //выйти в главное меню
+               
                 else if (mainMenuButtonRectangle.Contains(Mouse.GetState().Position))
                 {
-                    Global.IsGameActive = false; // Return to the main menu
-                    Global.IsGamePaused = false; // Ensure the game is not paused
+                    Global.IsGameActive = false; 
+                    Global.IsGamePaused = false; 
                 }
                 else if (exitButtonRectangle.Contains(Mouse.GetState().Position))
                 {

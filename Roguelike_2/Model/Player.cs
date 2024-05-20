@@ -24,8 +24,8 @@ namespace Roguelike_2
         private Weapon _shootGun = new ShotGun();
         private Weapon _AutomaticGun = new AutomaticGun();
         public bool Dead { get; private set; }
-        public int HP { get; private set; }
-        public int MaxHP { get; private set; }
+        public int HP { get; set; }
+        public int MaxHP { get; set; }
         public int Experience { get; private set; }
 
         public Player(Texture2D texture, Vector2 position) : base(texture, position)
@@ -47,7 +47,6 @@ namespace Roguelike_2
             Experience = 0;
         }
 
-        //Переработать под большее количество оружия
         public void Swap()
         {
             Weapon = (Weapon==_shootGun) ? _AutomaticGun : _shootGun;
@@ -58,7 +57,7 @@ namespace Roguelike_2
             foreach (var e in Enemies)
             {
                 if (e.HP <= 0) continue;
-                if ((Position - e.Position).Length() < 50)
+                if (Bounds.Intersects(e.Bounds))
                 {
                     HP--;
                     e.ResetHP();
