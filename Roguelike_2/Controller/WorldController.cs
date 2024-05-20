@@ -30,6 +30,8 @@ namespace Roguelike_2
             var hp = Global.Content.Load<Texture2D>("HP");
             var exp = Global.Content.Load<Texture2D>("exp");
             ExpController.Initialize(exp);
+            BoxController.Initialize(exp);
+            HeartController.Initialize(hp);
             ProjectileController.Initialize(bullet);
             UIController.Initialize(bullet, hp, exp);
             EnemyAI.Initialize(_player.Position);
@@ -42,6 +44,8 @@ namespace Roguelike_2
         {
             Global.IsPlayerDead = false;
             ProjectileController.Reset();
+            BoxController.Reset();
+            HeartController.Reset();
             ExpController.Reset();
             EnemyAI.Reset();
             _player.Reset();
@@ -52,9 +56,11 @@ namespace Roguelike_2
         {
             Input.Update();
             _background.Update();
-            _player.Update(EnemyAI.Enemies);
+            _player.Update(EnemyAI.Enemies, BoxController.Boxes);
             UIController.Update(_player);
-            ProjectileController.Update(EnemyAI.Enemies);
+            ProjectileController.Update(EnemyAI.Enemies, BoxController.Boxes);
+            BoxController.Update();
+            HeartController.Update(_player);
             ExpController.Update(_player);
             EnemyAI.Update(_player);
 
@@ -72,6 +78,8 @@ namespace Roguelike_2
             _background.Draw();
             _player.Draw();
             ProjectileController.Draw();
+            BoxController.Draw();
+            HeartController.Draw();
             ExpController.Draw();
             EnemyAI.Draw(spriteBatch);
             UIController.Draw(_player);

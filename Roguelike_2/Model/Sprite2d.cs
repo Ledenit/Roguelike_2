@@ -35,6 +35,18 @@ namespace Roguelike_2
             Scale = 1f;
             origin = new(tex.Width / 2, tex.Height / 2);
         }
+        public Rectangle Bounds
+        {
+            get
+            {
+                return new Rectangle(
+                    (int)(Position.X - origin.X * Scale),
+                    (int)(Position.Y - origin.Y * Scale),
+                    (int)(texture.Width * Scale),
+                    (int)(texture.Height * Scale)
+                );
+            }
+        }
 
         public virtual void Draw()
         {

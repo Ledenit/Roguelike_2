@@ -13,6 +13,7 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Content;
 using static System.Net.Mime.MediaTypeNames;
 using System.ComponentModel.Design.Serialization;
+using SharpDX.Direct3D9;
 #endregion
 
 namespace Roguelike_2
@@ -24,12 +25,14 @@ namespace Roguelike_2
         private Weapon _AutomaticGun = new AutomaticGun();
         public bool Dead { get; private set; }
         public int HP { get; private set; }
+        public int MaxHP { get; private set; }
         public int Experience { get; private set; }
 
         public Player(Texture2D texture, Vector2 position) : base(texture, position)
         {
             Weapon = _shootGun;
             HP = 3;
+            MaxHP = 3;
             Experience = 0;
         }
 
@@ -70,7 +73,12 @@ namespace Roguelike_2
             Experience += experience;
         }
 
-        public void Update(List<Enemy> Enemies)
+        public void GetHP(int hp)
+        {
+            HP += hp;
+        }
+
+        public void Update(List<Enemy> Enemies, List<Box> Boxes)
         {
             var toMouse = Input.MousePosition - Position;
             Rotation = (float)Math.Atan2(toMouse.Y, toMouse.X);
@@ -88,8 +96,18 @@ namespace Roguelike_2
 
             if (Input.RPressed)
                 Weapon.Reload();
-
             CheckDeath(Enemies);
+
+            foreach (var box in Boxes)
+            {
+                if (Bounds.Intersects(box.Bounds)) 
+                {
+                    while (Bounds.Intersects(box.Bounds))
+                    {
+                        Position -= Vector2.Normalize(toMouse); 
+                    }
+                }
+            }
         }
     }
 }

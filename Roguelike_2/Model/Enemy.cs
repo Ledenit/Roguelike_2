@@ -19,7 +19,7 @@ namespace Roguelike_2
     {
         public int HP { get; private set; }
         private int maxHP;
-        private List<Vector2> obstacles;
+        private List<Rectangle> obstacles;
         public Texture2D Texture { get; private set; }
         public float EnemySpeed { get; set; }
 
@@ -29,7 +29,7 @@ namespace Roguelike_2
             Texture = texture;
             HP = hp;
             maxHP = hp;
-            obstacles = new List<Vector2>();
+            obstacles = new List<Rectangle>();
         }
 
         public void TakeDamage(int damage)
@@ -53,12 +53,12 @@ namespace Roguelike_2
             Rotation = (float)Math.Atan2(toPlayer.Y, toPlayer.X);
 
             obstacles.Clear();
-            obstacles.Add(player.Position);
+            obstacles.Add(player.Bounds);
 
             foreach (var enemy in enemies)
             {
-                if (enemy.Position != Position)
-                    obstacles.Add(enemy.Position);
+                if (enemy != this)
+                    obstacles.Add(enemy.Bounds);
             }
 
             AvoidObstacles();
@@ -74,12 +74,11 @@ namespace Roguelike_2
         {
             foreach (var obstacle in obstacles)
             {
-                var toObstacle = obstacle - Position;
-                var distance = toObstacle.Length();
-
-                if (distance < 50)
+                if (Bounds.Intersects(obstacle))
                 {
-                    var avoidanceDir = Vector2.Normalize(Position - obstacle);
+                    var obstacleCenter = new Vector2(obstacle.X + obstacle.Width / 2, obstacle.Y + obstacle.Height / 2);
+                    var toObstacle = -obstacleCenter + Bounds.Center.ToVector2();
+                    var avoidanceDir = Vector2.Normalize(toObstacle);
                     Position += avoidanceDir * EnemySpeed * Global.TotalSeconds;
                 }
             }

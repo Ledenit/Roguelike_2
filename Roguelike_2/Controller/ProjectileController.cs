@@ -38,12 +38,12 @@ namespace Roguelike_2
             Projectiles.Add(new(_texture, info));
         }
 
-        public static void Update(List<Enemy> enemies)
+        public static void Update(List<Enemy> enemies, List<Box> boxes)
         {
-            foreach(var p in Projectiles)
+            foreach (var p in Projectiles)
             {
                 p.Update();
-                foreach(var e in enemies)
+                foreach (var e in enemies)
                 {
                     if (e.HP <= 0) continue;
                     if ((p.Position - e.Position).Length() < 30)
@@ -54,8 +54,18 @@ namespace Roguelike_2
                     }
                 }
 
+                foreach (var b in boxes)
+                {
+                    if (b.IsDestroyed) continue;
+                    if ((p.Position - b.Position).Length() < 30)
+                    {
+                        b.Break();
+                        p.Destroy();
+                        break;
+                    }
+                }
             }
-            Projectiles.RemoveAll((p) => p.LifeTime <= 0);
+            Projectiles.RemoveAll(p => p.LifeTime <= 0);
         }
 
         public static void Draw()
