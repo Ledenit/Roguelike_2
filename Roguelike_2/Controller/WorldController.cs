@@ -75,7 +75,7 @@ namespace Roguelike_2
 
             if (_player.Experience >= 20 && !_monster2Spawned)
             {
-                EnemyAI.Initialize("mob2", 1, 220, 2.5f);
+                EnemyAI.Initialize("mob2", 1, 220, 2f);
                 EnemyAI.AddEnemies();
 
                 _player.MaxHP += 1;

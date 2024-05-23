@@ -24,7 +24,7 @@ namespace Roguelike_2
                 Position = player.Position,
                 Rotation = player.Rotation,
                 LifeTime = 2,
-                Speed = 600,
+                Speed = 800,
                 Damage = 1
             };
 
@@ -33,7 +33,7 @@ namespace Roguelike_2
 
         public AutomaticGun()
         {
-            cooldown = 0.1f;
+            cooldown = 0.15f;
             maxAmmo = 30;
             Ammo = maxAmmo;
             reloadTime = 2f;

@@ -18,17 +18,20 @@ namespace Roguelike_2
 {
     public class SpriteMoving : Sprite2d
     {
+        public static List<SpriteMoving> AllMovables { get; } = new List<SpriteMoving>();
+
         public SpriteMoving(Texture2D texture, Vector2 position) : base(texture, position)
         {
-            Speed = 300.0f;
+            Speed = 400.0f;
+            AllMovables.Add(this);
         }
 
         public void Update()
         {
             if (Input.Direction != Vector2.Zero)
             {
-                var directoin = Vector2.Normalize(Input.Direction);
-                Position += directoin * Speed * Global.TotalSeconds;
+                var direction = Vector2.Normalize(Input.Direction);
+                Position += direction * Speed * Global.TotalSeconds;
             }
         }
     }

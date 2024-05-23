@@ -97,15 +97,49 @@ namespace Roguelike_2
                 Weapon.Reload();
             CheckDeath(Enemies);
 
+            Vector2 movementDirection = Vector2.Zero;
+            if (Input.Direction != Vector2.Zero)
+            {
+                movementDirection = Vector2.Normalize(Input.Direction);
+            }
+
+            Vector2 movement = movementDirection * Speed * Global.TotalSeconds;
+
             foreach (var box in Boxes)
             {
-                if (Bounds.Intersects(box.Bounds)) 
+                if (Bounds.Intersects(box.Bounds))
                 {
-                    while (Bounds.Intersects(box.Bounds))
-                    {
-                        Position -= Vector2.Normalize(toMouse); 
-                    }
+                    Vector2 penetrationVector = CalculatePenetrationVector(box);
+                    movement -= penetrationVector;
                 }
+            }
+
+            foreach (var movable in SpriteMoving.AllMovables)
+            {
+                movable.Position -= movement;
+            }
+        }
+
+        private Vector2 CalculatePenetrationVector(Box box)
+        {
+            Rectangle playerBounds = this.Bounds;
+            Rectangle boxBounds = box.Bounds;
+
+            float overlapLeft = playerBounds.Right - boxBounds.Left;
+            float overlapRight = boxBounds.Right - playerBounds.Left;
+            float overlapTop = playerBounds.Bottom - boxBounds.Top;
+            float overlapBottom = boxBounds.Bottom - playerBounds.Top;
+
+            float minOverlapX = (overlapLeft < overlapRight) ? overlapLeft : -overlapRight;
+            float minOverlapY = (overlapTop < overlapBottom) ? overlapTop : -overlapBottom;
+
+            if (Math.Abs(minOverlapX) < Math.Abs(minOverlapY))
+            {
+                return new Vector2(minOverlapX, 0);
+            }
+            else
+            {
+                return new Vector2(0, minOverlapY);
             }
         }
     }
