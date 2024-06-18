@@ -37,7 +37,6 @@ C:\Users\georg\C#_Game\Roguelike_2\Roguelike_2\obj\Debug\net6.0-windows\Roguelik
 C:\Users\georg\C#_Game\Roguelike_2\Roguelike_2\obj\Debug\net6.0-windows\ref\Roguelike_2.dll
 C:\Users\georg\C#_Game\Roguelike_2\Roguelike_2\bin\Debug\net6.0-windows\Content\bullet.xnb
 C:\Users\georg\C#_Game\Roguelike_2\Roguelike_2\bin\Debug\net6.0-windows\Content\cursor.xnb
-C:\Users\georg\C#_Game\Roguelike_2\Roguelike_2\bin\Debug\net6.0-windows\Content\hero.xnb
 C:\Users\georg\C#_Game\Roguelike_2\Roguelike_2\bin\Debug\net6.0-windows\Content\mob.xnb
 C:\Users\georg\C#_Game\Roguelike_2\Roguelike_2\bin\Debug\net6.0-windows\Content\HP.xnb
 C:\Users\georg\C#_Game\Roguelike_2\Roguelike_2\bin\Debug\net6.0-windows\Content\exp.xnb

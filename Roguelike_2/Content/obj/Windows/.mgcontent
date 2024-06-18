@@ -14,7 +14,6 @@
     <File>C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/exp.png</File>
     <File>C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/font.spritefont</File>
     <File>C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/hero-pixel.png</File>
-    <File>C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/hero.png</File>
     <File>C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/HP.png</File>
     <File>C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/mob.png</File>
     <File>C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/mob1.png</File>
@@ -32,7 +31,6 @@
     <File>C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/Tutorial.png</File>
   </SourceFiles>
   <DestFiles>
-    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

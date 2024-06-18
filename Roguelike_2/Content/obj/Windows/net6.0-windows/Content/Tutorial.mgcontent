@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/Tutorial.png</SourceFile>
-  <SourceTime>2024-05-20T17:20:16.2482289+05:00</SourceTime>
+  <SourceTime>2024-06-18T13:14:24.8056443+05:00</SourceTime>
   <DestFile>C:/Users/georg/C#_Game/Roguelike_2/Roguelike_2/Content/bin/Windows/Content/Tutorial.xnb</DestFile>
-  <DestTime>2024-05-20T17:22:48.8315302+05:00</DestTime>
+  <DestTime>2024-06-18T13:15:31.4689152+05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T16:44:56+05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

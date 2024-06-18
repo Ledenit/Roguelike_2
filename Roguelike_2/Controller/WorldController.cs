@@ -67,13 +67,8 @@ namespace Roguelike_2
             ExpController.Update(_player);
             EnemyAI.Update(_player);
 
-            //if (_player.Experience > 10)
-            //{
-            //    var textureToRemove = Global.Content.Load<Texture2D>("mob");
-            //    EnemyAI.RemoveEnemies(textureToRemove);
-            //}
 
-            if (_player.Experience >= 20 && !_monster2Spawned)
+            if (_player.Experience >= 10 && !_monster2Spawned)
             {
                 EnemyAI.Initialize("mob2", 1, 220, 2f);
                 EnemyAI.AddEnemies();
@@ -83,7 +78,7 @@ namespace Roguelike_2
                 _monster2Spawned = true; 
             }
 
-            if (_player.Experience >= 30 && !_monster3Spawned)
+            if (_player.Experience >= 20 && !_monster3Spawned)
             {
                 EnemyAI.Initialize("mob4", 3, 190, 3f);
                 EnemyAI.AddEnemies();
@@ -93,7 +88,7 @@ namespace Roguelike_2
                 _monster3Spawned = true;
             }
 
-            if (_player.Experience >= 40 && !_monster4Spawned)
+            if (_player.Experience >= 30 && !_monster4Spawned)
             {
                 
                 EnemyAI.Initialize("mob3", 5, 60, 4f);
